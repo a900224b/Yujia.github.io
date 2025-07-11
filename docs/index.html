@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta name="description" content="裕傢室內裝修有限公司，提供專業室內設計與裝修工程，設計美學與實用兼備，歡迎聯繫我們了解更多。">
+  <meta name="keywords" content="室內裝修, 室內設計, 裝潢, 裝修公司, 裕傢室內裝修, 台中裝潢">
+  <meta name="author" content="裕傢室內裝修有限公司">
+  <meta property="og:title" content="裕傢室內裝修有限公司 - 專業室內裝潢設計">
+  <meta property="og:description" content="打造質感生活空間，專業設計與工程施工，立即了解我們的服務內容。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/test.jpg">
+  <meta property="og:url" content="https://yourdomain.com">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>品牌首頁</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- 回到頂部按鈕（初始隱藏，滑動後顯示） -->
+  <button id="backToTop" title="回到頂部">⬆</button>
+
+  <!-- 導覽列 -->
+  
+<nav class="top-nav">
+  <button class="hamburger" onclick="toggleMenu()">☰</button>
+  <div class="mobile-menu" id="mobileMenu">
+
+    <a href="index.html">首頁</a>
+    <a href="about.html">關於我們</a>
+    <a href="services.html">服務內容</a>
+    <a href="cases.html">客戶案例</a>
+    <a href="contact.html">聯絡我們</a>
+    <a href="https://www.1111.com.tw/corp/67789982">加入我們</a>
+  </div></nav>	
+
+  <!-- 首頁大圖輪播區 -->
+  <section class="hero">
+    <div class="slider">
+      <div class="slides" id="slides">
+        <!-- 幻燈片圖片 -->
+        <div class="slide"><img src="img/test1.jpg" alt="現代簡約風格室內設計" /></div>
+        <div class="slide"><img src="img/test2.png" alt="科技風格室內裝潢" /></div>
+        <div class="slide"><img src="img/test3.jpg" alt="都會風室內設計案例" /></div>
+      </div>
+
+      <!-- 左右切換按鈕 -->
+      <button class="controls-left" onclick="prevSlide()">⟨</button>
+      <button class="controls-right" onclick="nextSlide()">⟩</button>
+
+      <!-- 幻燈片目前進度 -->
+      <div class="slide-indicator" id="slide-indicator">第 1 張 / 共 3 張</div>
+
+      <!-- 公司資訊欄 -->
+      <footer class="info-bar">
+        裕傢室內裝修有限公司 | 室內裝修 | 專業設計 | 聯絡我們
+      </div>
+    </div>
+
+    <!-- 中間往下箭頭（導引滾動） -->
+    <div class="scroll-down" onclick="scrollToContent()">⬇</div>
+  </main>
+
+  <!-- 主要內容區塊 -->
+  <main class="content" id="main-content">
+    <h2>我們是誰</h2>
+    <p>這裡可以介紹你的公司、品牌理念或服務特色。我們致力於提供高品質的產品與專業的服務，打造值得信賴的商業夥伴關係。</p>
+
+    <h2>我們提供什麼</h2>
+    <p>產品、服務、成功案例或客戶回饋等資訊，可以分區展示。</p>
+
+    <h2>聯絡我們</h2>
+    <p>你也可以在這裡放一個表單或 Email/電話等聯絡方式。</p>
+    <h2>1</h2>
+    <p>1</p>
+    <h2>2</h2>
+    <p>2</p>
+  
+  <!-- JavaScript 程式碼 -->
+  <script src="js/script.js"></script>
+
+<script>
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('open');
+}
+</script>
+</body>
+</html>
