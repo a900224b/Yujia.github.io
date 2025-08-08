@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>客戶案例展示</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="css/about-style.css" />
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: #1e1f26 url('img/test1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .overlay {
+      background: rgba(0,0,0,0.7);
+      min-height: 100vh;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .case-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .case-card:hover {
+      transform: scale(1.03);
+    }
+
+    .case-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .case-card .content {
+      padding: 15px;
+    }
+
+    .case-card h3 {
+      margin: 0 0 10px;
+    }
+
+    .swiper {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      display: none;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      position: relative;
+      background: #222;
+      padding: 30px;
+      border-radius: 8px;
+      max-width: 800px;
+      width: 90%;
+      overflow: hidden;
+    }
+
+    .modal-content h2 {
+      margin-top: 20px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+      z-index: 9999;
+    }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: #1e1f26 url('img/test1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .top-nav {
+      background-color: #333;
+      color: white;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .logo .mobile-only {
+      display: none;
+    }
+
+    .logo .desktop-only {
+      display: inline;
+    }
+
+    .hamburger {
+      font-size: 1.8rem;
+      background: none;
+      color: white;
+      border: none;
+      cursor: pointer;
+      display: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      color: #f0c040;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: #333;
+        flex-direction: column;
+        align-items: center;
+        display: none;
+        padding: 1rem 0;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .logo .desktop-only {
+        display: none;
+      }
+
+      .logo .mobile-only {
+        display: inline;
+      }
+    }
+
+    .overlay {
+      background: rgba(0,0,0,0.7);
+      min-height: 100vh;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .case-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .case-card:hover {
+      transform: scale(1.03);
+    }
+
+    .case-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .case-card .content {
+      padding: 15px;
+    }
+
+    .swiper {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      display: none;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      position: relative;
+      background: #222;
+      padding: 30px;
+      border-radius: 8px;
+      max-width: 800px;
+      width: 90%;
+      overflow: hidden;
+    }
+
+    .modal-content h2 {
+      margin-top: 20px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+      z-index: 9999;
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      display: none;
+      font-size: 1.5rem;
+      padding: 10px 15px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    #backToTop.show {
+      display: block;
+    }
+
+    .footer {
+      background-color: #f0f0f0;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #333;
+    }
+    p, h1 {
+      line-height: 1.7;
+      letter-spacing: 0.5px;
+      word-spacing: 2px;
+      font-family: 'Noto Sans TC', 'Segoe UI', sans-serif;
+    }
+  </style>
+  
+</head>
+<body>  
+  <!-- 回頂按鈕 -->
+  <button id="backToTop" title="回到頂部">⬆</button>
+
+  <!-- 響應式導覽列 -->
+  <nav class="top-nav">
+    <div class="nav-container">
+      <a href="index.html" class="logo"><span class="mobile-only">裕傢室內裝修有限公司</span></a>
+      <button class="hamburger" id="hamburger" aria-label="開啟選單">☰</button>
+      <ul class="nav-links" id="navMenu">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="about.html">關於我們</a></li>
+        <li><a href="services.html">服務內容</a></li>
+        <li><a href="cases.html">客戶案例</a></li>
+        <li><a href="contact.html">聯絡我們</a></li>
+        <li><a href="https://www.1111.com.tw/corp/67789982" target="_blank">加入我們</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="overlay">
+    <h1>客戶案例總覽</h1>
+    <div class="case-grid">
+      <div class="case-card" onclick="openModal(0)">
+        <img src="img/住家01.jpg" alt="案例1">
+        <div class="content">
+          <h3>🔹 XX醫院裝修案</h3>
+          <p>診間、候診室與無障礙動線整合設計</p>
+        </div>
+      </div>
+      <div class="case-card" onclick="openModal(1)">
+        <img src="img/學校01.jpg" alt="案例2">
+        <div class="content">
+          <h3>🔹 OO企業辦公室</h3>
+          <p>開放式辦公空間與會議區設計</p>
+        </div>
+      </div>
+      <div class="case-card" onclick="openModal(2)">
+        <img src="img/辦公室01.jpg" alt="案例3">
+        <div class="content">
+          <h3>🔹 XX醫院裝修案</h3>
+          <p>診間、候診室與無障礙動線整合設計</p>
+        </div>
+      </div>
+      <div class="case-card" onclick="openModal(3)">
+        <img src="img/醫院01.jpg" alt="案例4">
+        <div class="content">
+          <h3>🔹 OO企業辦公室</h3>
+          <p>開放式辦公空間與會議區設計</p>
+        </div>
+      </div>
+      <div class="case-card" onclick="openModal(4)">
+        <img src="img/廠房01.jpg" alt="案例5">
+        <div class="content">
+          <h3>🔹 OO企業辦公室</h3>
+          <p>開放式辦公空間與會議區設計</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <div class="modal-close" onclick="closeModal()">×</div>
+      <div class="swiper">
+        <div class="swiper-wrapper" id="swiper-wrapper"></div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDesc"></p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const data = [
+      {
+        title: "🔹 XX醫院裝修案",
+        desc: "本案為醫療空間整合設計，涵蓋診間、候診室與無障礙動線配置。",
+        images: ["img/住家01.jpg", "img/住家02.jpg", "img/住家03.jpg"]
+      },
+      {
+        title: "🔹 OO企業辦公室",
+        desc: "以機能性與開放空間為主軸，規劃辦公桌、會議室與接待區域。",
+        images: ["img/學校01.jpg", "img/學校02.jpg", "img/學校03.jpg"]
+      },
+      {
+        title: "🔹 OO企業辦公室",
+        desc: "以機能性與開放空間為主軸，規劃辦公桌、會議室與接待區域。",
+        images: ["img/辦公室01.jpg", "img/辦公室02.jpg", "img/辦公室03.jpg"]
+      },
+      {
+        title: "🔹 OO企業辦公室",
+        desc: "以機能性與開放空間為主軸，規劃辦公桌、會議室與接待區域。",
+        images: ["img/醫院01.jpg", "img/醫院02.jpg", "img/醫院03.jpg"]
+      },
+      {
+        title: "🔹 OO企業辦公室",
+        desc: "以機能性與開放空間為主軸，規劃辦公桌、會議室與接待區域。",
+        images: ["img/廠房01.jpg", "img/廠房02.jpg", "img/廠房03.jpg"]
+      }
+    ];
+
+    let swiper;
+
+    window.openModal = function(index) {
+      const caseData = data[index];
+      document.getElementById('modalTitle').innerText = caseData.title;
+      document.getElementById('modalDesc').innerText = caseData.desc;
+
+      const wrapper = document.getElementById('swiper-wrapper');
+      wrapper.innerHTML = '';
+      caseData.images.forEach(img => {
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+        slide.innerHTML = `<img src="${img}" alt="案例圖片">`;
+        wrapper.appendChild(slide);
+      });
+
+      document.getElementById('modal').classList.add('active');
+
+      swiper = new Swiper('.swiper', {
+        loop: true,
+        pagination: { el: '.swiper-pagination' },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+    }
+
+    window.closeModal = function() {
+      document.getElementById('modal').classList.remove('active');
+      if (swiper) swiper.destroy();
+    }
+  </script>
+  <!-- JavaScript 功能 -->
+  <script>
+    // 漢堡選單切換
+    document.getElementById("hamburger").addEventListener("click", function () {
+      document.getElementById("navMenu").classList.toggle("open");
+    });
+
+    // 回頂按鈕
+    window.onscroll = function () {
+      const btn = document.getElementById("backToTop");
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        btn.classList.add("show");
+      } else {
+        btn.classList.remove("show");
+      }
+    };
+    document.getElementById("backToTop").onclick = function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+  </script>
+  <!-- 網站版權 footer -->
+  <footer class="footer">
+    <p class="center-text">版權所有 © 裕傢室內裝修有限公司｜Designed by 要留儀翰 網頁設計</p>
+  </footer>
+</body>
+</html>
