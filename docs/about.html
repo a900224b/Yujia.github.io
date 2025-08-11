@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ===== 導覽列（mobile-first） ===== */
     .top-nav {
       background-color: #333;
       color: white;
@@ -32,22 +33,34 @@
       font-weight: bold;
     }
 
+    /* 手機預設：顯示漢堡、隱藏選單（點擊展開） */
     .hamburger {
       font-size: 1.8rem;
       background: none;
       color: white;
       border: none;
       cursor: pointer;
-      display: none;
+      display: block;
     }
 
     .nav-links {
       list-style: none;
-      display: flex;
-      gap: 1.5rem;
       margin: 0;
       padding: 0;
+
+      /* 手機：疊放於導覽列下方、預設不顯示 */
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background-color: #333;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
     }
+    .nav-links.open { display: flex; }
 
     .nav-links li a {
       color: white;
@@ -55,39 +68,28 @@
       font-size: 1rem;
       transition: color 0.3s ease;
     }
+    .nav-links li a:hover { color: #f0c040; }
 
-    .nav-links li a:hover {
-      color: #f0c040;
-    }
-    .mobile-only {
-      display: none;
-    }
+    /* 手機顯示的公司名（桌機隱藏） */
+    .mobile-only { display: inline; }
 
-    @media (max-width: 768px) {
-      .hamburger {
-        display: block;
-      }
-      .mobile-only {
-        display: inline;
-      }
+    /* >=768px：切成桌面版（瀏覽器切到電腦版時也會命中） */
+    @media (min-width: 768px) {
+      .hamburger { display: none; }
+      .mobile-only { display: none; }
+
       .nav-links {
-        position: absolute;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background-color: #333;
-        flex-direction: column;
-        align-items: center;
-        display: none;
-        padding: 1rem 0;
-      }
-
-      .nav-links.open {
+        position: static;
         display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5rem;
+        background: transparent;
+        padding: 0;
       }
     }
 
-    /* 回頂按鈕 */
+    /* ===== 回頂按鈕 ===== */
     #backToTop {
       position: fixed;
       bottom: 40px;
@@ -102,22 +104,21 @@
       cursor: pointer;
       z-index: 1000;
     }
+    #backToTop.show { display: block; }
 
-    #backToTop.show {
-      display: block;
-    }
-
-    /* 簡易頁尾 */
+    /* ===== 簡易頁尾 ===== */
     .footer {
       background-color: #f0f0f0;
       padding: 1rem;
       text-align: center;
       font-size: 0.9rem;
     }
-
-    .center-text {
-      margin: 0;
-      color: #333;
+    .center-text { margin: 0; color: #333; }
+    .footer p {
+      font-size: clamp(12px, 2vw, 16px);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   </style>
 </head>
@@ -130,20 +131,22 @@
   <!-- 響應式導覽列 -->
   <nav class="top-nav">
     <div class="nav-container">
-      <a href="index.html" class="logo"><span class="mobile-only">裕傢室內裝修有限公司</span></a>
-      <button class="hamburger" id="hamburger" aria-label="開啟選單">☰</button>
+      <a href="index.html" class="logo">
+        <span class="mobile-only">裕傢室內裝修有限公司</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="開啟選單" aria-expanded="false">☰</button>
       <ul class="nav-links" id="navMenu">
         <li><a href="index.html">首頁</a></li>
-        <li><a href="about.html">關於我們</a></li>
+        <li><a href="about.html" aria-current="page">關於我們</a></li>
         <li><a href="services.html">服務內容</a></li>
         <li><a href="cases.html">客戶案例</a></li>
         <li><a href="contact.html">聯絡我們</a></li>
-        <li><a href="https://www.1111.com.tw/corp/67789982" target="_blank">加入我們</a></li>
+        <li><a href="https://www.1111.com.tw/corp/67789982" target="_blank" rel="noopener">加入我們</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- 背景圖片區塊 -->
+  <!-- 背景圖片區塊（樣式由 css/about-style.css 控制） -->
   <section class="bg-photo">
     <div class="bg-overlay"></div>
     <div class="text-container">
@@ -160,20 +163,23 @@
 
   <!-- JavaScript 功能 -->
   <script>
-    // 漢堡選單切換
+    // 漢堡選單切換（手機）
     document.getElementById("hamburger").addEventListener("click", function () {
-      document.getElementById("navMenu").classList.toggle("open");
+      const menu = document.getElementById("navMenu");
+      const open = menu.classList.toggle("open");
+      this.setAttribute("aria-expanded", open ? "true" : "false");
     });
 
     // 回頂按鈕
-    window.onscroll = function () {
+    window.addEventListener('scroll', function () {
       const btn = document.getElementById("backToTop");
       if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
         btn.classList.add("show");
       } else {
         btn.classList.remove("show");
       }
-    };
+    }, { passive: true });
+
     document.getElementById("backToTop").onclick = function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
